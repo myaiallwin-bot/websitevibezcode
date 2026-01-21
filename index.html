@@ -1,216 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>VIBEZ – GenZ Fashion Marketplace</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>VIBEZ – Multi-Vendor Clothing Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-:root{
-  --bg:#0f0f1a;
-  --card:#16162b;
-  --accent:#ff2edf;
-  --accent2:#00ffe1;
-  --text:#ffffff;
-  --muted:#b5b5d6;
-}
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-*{box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{margin:0;background:var(--bg);color:var(--text)}
-a{text-decoration:none;color:inherit}
+  <style>
+    :root {
+      --primary: linear-gradient(135deg, #8f00ff, #00e0ff);
+      --accent: #00ffd5;
+      --bg-light: #f7f7fb;
+      --glass: rgba(255,255,255,0.65);
+      --dark: #1a1a1a;
+      --muted: #777;
+      --radius: 18px;
+    }
 
-header{
-  padding:20px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  font-size:28px;
-  font-weight:700;
-  letter-spacing:2px;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
 
-nav{
-  display:flex;
-  gap:20px;
-  padding:15px;
-  background:#111;
-}
+    body {
+      background: var(--bg-light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
 
-nav button{
-  background:none;
-  border:1px solid var(--accent);
-  color:white;
-  padding:10px 20px;
-  border-radius:20px;
-  cursor:pointer;
-}
+    a { text-decoration: none; color: inherit; }
 
-section{display:none;padding:30px}
-section.active{display:block}
+    /* ===== GLOBAL ===== */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
 
-.card{
-  background:var(--card);
-  padding:20px;
-  border-radius:16px;
-  margin-bottom:20px;
-}
+    .btn {
+      padding: 12px 24px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      background: var(--primary);
+      color: #fff;
+      transition: 0.3s;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
+    .btn.outline {
+      background: transparent;
+      border: 2px solid #fff;
+    }
 
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  margin-bottom:10px;
-}
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
 
-button.primary{
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  border:none;
-  padding:12px 20px;
-  border-radius:20px;
-  cursor:pointer;
-  font-weight:600;
-}
+    h1,h2,h3 {
+      font-weight: 700;
+    }
 
-.tag{
-  padding:5px 10px;
-  background:#222;
-  border-radius:10px;
-  font-size:12px;
-  color:var(--accent2);
-}
-</style>
+    /* ===== HEADER ===== */
+    header {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 800;
+      background: var(--primary);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links a {
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 80px 20px;
+      border-radius: 0 0 40px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 20px auto;
+      opacity: 0.9;
+    }
+
+    /* ===== CATEGORIES ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .category {
+      text-align: center;
+      padding: 30px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      transform: translateY(-6px);
+    }
+
+    /* ===== PRODUCTS ===== */
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      background: #ddd;
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-weight: 700;
+      margin: 8px 0;
+    }
+
+    /* ===== DASHBOARDS ===== */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 20px;
+      margin-top: 60px;
+    }
+
+    aside {
+      background: #fff;
+      padding: 20px;
+      border-radius: var(--radius);
+    }
+
+    aside a {
+      display: block;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+    }
+
+    aside a:hover {
+      background: var(--bg-light);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 20px;
+    }
+
+    /* ===== TABLE ===== */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .success { background: #28c76f; }
+    .warning { background: #ff9f43; }
+    .danger  { background: #ea5455; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: #ccc;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer p {
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width: 900px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+      nav .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>VIBEZ</header>
+<!-- ===== HEADER / NAV ===== -->
+<header>
+  <nav>
+    <div class="logo">VIBEZ</div>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">New Drops</a>
+      <a href="#">Trending</a>
+      <a href="#">Vendors</a>
+      <a href="#">Login</a>
+      <a href="#">🛒</a>
+    </div>
+  </nav>
+</header>
 
-<nav>
-  <button onclick="show('customer')">Customer</button>
-  <button onclick="show('vendor')">Vendor</button>
-  <button onclick="show('admin')">Super Admin</button>
-</nav>
+<!-- ===== PUBLIC LANDING PAGE ===== -->
+<section class="hero">
+  <h1>VIBEZ – Your Multi-Vendor Streetwear Hub</h1>
+  <p>Discover bold fashion from multiple independent brands. One platform. Infinite vibes.</p>
+  <button class="btn">Shop Now</button>
+  <button class="btn outline">Become a Vendor</button>
+</section>
 
-<!-- ================= CUSTOMER ================= -->
-<section id="customer" class="active">
-  <h2>Shop Trendy Outfits</h2>
-
-  <input placeholder="Search outfits, brands, styles">
-
+<section class="container">
+  <h2>Shop by Category</h2>
   <div class="grid">
-    <div class="card">
+    <div class="card category">Men</div>
+    <div class="card category">Women</div>
+    <div class="card category">Unisex</div>
+    <div class="card category">Streetwear</div>
+    <div class="card category">Ethnic</div>
+    <div class="card category">Accessories</div>
+  </div>
+</section>
+
+<section class="container">
+  <h2>Trending Products</h2>
+  <div class="grid">
+    <div class="card product-card">
+      <img />
       <h3>Oversized Hoodie</h3>
-      <p>₹1,999 (Incl. GST)</p>
-      <span class="tag">Unisex</span>
-      <button class="primary">Add to Cart</button>
+      <p class="price">₹1,799</p>
+      <button class="btn">Add to Cart</button>
     </div>
-
-    <div class="card">
-      <h3>Streetwear Dress</h3>
-      <p>₹2,499 (Incl. GST)</p>
-      <span class="tag">Women</span>
-      <button class="primary">Add to Cart</button>
+    <div class="card product-card">
+      <img />
+      <h3>Street Cargo Pants</h3>
+      <p class="price">₹2,299</p>
+      <button class="btn">Add to Cart</button>
     </div>
-  </div>
-
-  <div class="card">
-    <h3>Checkout</h3>
-    <input placeholder="Full Name">
-    <input placeholder="Address">
-    <input placeholder="Pincode">
-    <select>
-      <option>Payment via UPI / Card / NetBanking</option>
-    </select>
-    <button class="primary">Pay ₹4,498</button>
-  </div>
-
-  <div class="card">
-    <h3>Order Tracking</h3>
-    <p>Order Placed → Packed → Shipped → Delivered</p>
-  </div>
-</section>
-
-<!-- ================= VENDOR ================= -->
-<section id="vendor">
-  <h2>Vendor Dashboard</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Add Product</h3>
-      <input placeholder="Product Name">
-      <input placeholder="Price (INR)">
-      <input placeholder="GST %">
-      <select>
-        <option>Size Options</option>
-        <option>S / M / L / XL</option>
-      </select>
-      <button class="primary">Add Product</button>
-    </div>
-
-    <div class="card">
-      <h3>Sales Overview</h3>
-      <p>Total Orders: 120</p>
-      <p>Earnings: ₹3,45,000</p>
-      <p>GST Submitted: Yes</p>
-    </div>
-
-    <div class="card">
-      <h3>Delivery Updates</h3>
-      <p>5 Orders Pending</p>
-      <p>115 Delivered</p>
+    <div class="card product-card">
+      <img />
+      <h3>Urban Kurta</h3>
+      <p class="price">₹1,499</p>
+      <button class="btn">Add to Cart</button>
     </div>
   </div>
 </section>
 
-<!-- ================= ADMIN ================= -->
-<section id="admin">
-  <h2>Super Admin Dashboard</h2>
+<!-- ===== VENDOR DASHBOARD ===== -->
+<section class="container">
+  <h2>Vendor Dashboard (UI)</h2>
+  <div class="dashboard">
+    <aside>
+      <strong>Vendor Panel</strong>
+      <a href="#">Dashboard</a>
+      <a href="#">Manage Products</a>
+      <a href="#">Orders</a>
+      <a href="#">Financials & GST</a>
+      <a href="#">Analytics</a>
+      <a href="#">Marketing Banners</a>
+    </aside>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Add Vendor</h3>
-      <input placeholder="Vendor Name">
-      <input placeholder="GST Number">
-      <select>
-        <option>Subscription Plan</option>
-        <option>Basic</option>
-        <option>Pro</option>
-        <option>Enterprise</option>
-      </select>
-      <button class="primary">Add Vendor</button>
-    </div>
+    <main>
+      <div class="stats">
+        <div class="card">Total Products: 45</div>
+        <div class="card">Active Orders: 12</div>
+        <div class="card">Revenue: ₹3,45,000</div>
+        <div class="card">GST Collected: ₹62,100</div>
+      </div>
 
-    <div class="card">
-      <h3>Vendor Performance</h3>
-      <p>Active Vendors: 42</p>
-      <p>Top Vendor Revenue: ₹8.2L</p>
-    </div>
-
-    <div class="card">
-      <h3>Marketing Banners</h3>
-      <p>Active Ads: 12</p>
-      <button class="primary">Upload Banner</button>
-    </div>
-
-    <div class="card">
-      <h3>Platform Revenue</h3>
-      <p>Total Sales: ₹2.3 Cr</p>
-      <p>GST Compliant ✔</p>
-    </div>
+      <h3>Recent Orders</h3>
+      <table>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Status</th>
+          <th>Amount</th>
+        </tr>
+        <tr>
+          <td>#ORD234</td>
+          <td>Amit Shah</td>
+          <td><span class="badge warning">Processing</span></td>
+          <td>₹2,299</td>
+        </tr>
+        <tr>
+          <td>#ORD235</td>
+          <td>Neha Patil</td>
+          <td><span class="badge success">Delivered</span></td>
+          <td>₹1,799</td>
+        </tr>
+      </table>
+    </main>
   </div>
 </section>
 
-<script>
-function show(id){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
-  document.getElementById(id).classList.add('active')
-}
-</script>
+<!-- ===== SUPER ADMIN DASHBOARD ===== -->
+<section class="container">
+  <h2>Super Admin Dashboard (UI)</h2>
+  <div class="stats">
+    <div class="card">Total Vendors: 128</div>
+    <div class="card">Active Vendors: 112</div>
+    <div class="card">Total Customers: 12,430</div>
+    <div class="card">GMV: ₹4.8 Cr</div>
+  </div>
+
+  <h3>Vendor Management</h3>
+  <table>
+    <tr>
+      <th>Vendor</th>
+      <th>Plan</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    <tr>
+      <td>UrbanKnot</td>
+      <td>Pro</td>
+      <td><span class="badge success">Active</span></td>
+      <td><button class="btn">View</button></td>
+    </tr>
+    <tr>
+      <td>StreetDNA</td>
+      <td>Basic</td>
+      <td><span class="badge danger">Expired</span></td>
+      <td><button class="btn">Renew</button></td>
+    </tr>
+  </table>
+</section>
+
+<!-- ===== CUSTOMER AREA ===== -->
+<section class="container">
+  <h2>Customer Dashboard (UI)</h2>
+  <div class="dashboard">
+    <aside>
+      <a href="#">Profile</a>
+      <a href="#">Orders</a>
+      <a href="#">Wishlist</a>
+      <a href="#">Addresses</a>
+      <a href="#">Logout</a>
+    </aside>
+
+    <main>
+      <div class="card">
+        <h3>Order Tracking</h3>
+        <p>Order #ORD235 – <strong>Out for Delivery</strong></p>
+        <p>Expected Delivery: 25 Jan 2026</p>
+      </div>
+    </main>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>
+    © 2026 VIBEZ. All transactions processed in INR under Government of India GST system.
+  </p>
+</footer>
 
 </body>
 </html>
