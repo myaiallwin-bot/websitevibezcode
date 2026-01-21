@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VIBEZ – GenZ Fashion Marketplace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --bg:#0f0f1a;
+  --card:#16162b;
+  --accent:#ff2edf;
+  --accent2:#00ffe1;
+  --text:#ffffff;
+  --muted:#b5b5d6;
+}
+
+*{box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{margin:0;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+
+header{
+  padding:20px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+  padding:15px;
+  background:#111;
+}
+
+nav button{
+  background:none;
+  border:1px solid var(--accent);
+  color:white;
+  padding:10px 20px;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+section{display:none;padding:30px}
+section.active{display:block}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  margin-bottom:10px;
+}
+
+button.primary{
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  border:none;
+  padding:12px 20px;
+  border-radius:20px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.tag{
+  padding:5px 10px;
+  background:#222;
+  border-radius:10px;
+  font-size:12px;
+  color:var(--accent2);
+}
+</style>
+</head>
+
+<body>
+
+<header>VIBEZ</header>
+
+<nav>
+  <button onclick="show('customer')">Customer</button>
+  <button onclick="show('vendor')">Vendor</button>
+  <button onclick="show('admin')">Super Admin</button>
+</nav>
+
+<!-- ================= CUSTOMER ================= -->
+<section id="customer" class="active">
+  <h2>Shop Trendy Outfits</h2>
+
+  <input placeholder="Search outfits, brands, styles">
+
+  <div class="grid">
+    <div class="card">
+      <h3>Oversized Hoodie</h3>
+      <p>₹1,999 (Incl. GST)</p>
+      <span class="tag">Unisex</span>
+      <button class="primary">Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <h3>Streetwear Dress</h3>
+      <p>₹2,499 (Incl. GST)</p>
+      <span class="tag">Women</span>
+      <button class="primary">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Checkout</h3>
+    <input placeholder="Full Name">
+    <input placeholder="Address">
+    <input placeholder="Pincode">
+    <select>
+      <option>Payment via UPI / Card / NetBanking</option>
+    </select>
+    <button class="primary">Pay ₹4,498</button>
+  </div>
+
+  <div class="card">
+    <h3>Order Tracking</h3>
+    <p>Order Placed → Packed → Shipped → Delivered</p>
+  </div>
+</section>
+
+<!-- ================= VENDOR ================= -->
+<section id="vendor">
+  <h2>Vendor Dashboard</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Add Product</h3>
+      <input placeholder="Product Name">
+      <input placeholder="Price (INR)">
+      <input placeholder="GST %">
+      <select>
+        <option>Size Options</option>
+        <option>S / M / L / XL</option>
+      </select>
+      <button class="primary">Add Product</button>
+    </div>
+
+    <div class="card">
+      <h3>Sales Overview</h3>
+      <p>Total Orders: 120</p>
+      <p>Earnings: ₹3,45,000</p>
+      <p>GST Submitted: Yes</p>
+    </div>
+
+    <div class="card">
+      <h3>Delivery Updates</h3>
+      <p>5 Orders Pending</p>
+      <p>115 Delivered</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ADMIN ================= -->
+<section id="admin">
+  <h2>Super Admin Dashboard</h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Add Vendor</h3>
+      <input placeholder="Vendor Name">
+      <input placeholder="GST Number">
+      <select>
+        <option>Subscription Plan</option>
+        <option>Basic</option>
+        <option>Pro</option>
+        <option>Enterprise</option>
+      </select>
+      <button class="primary">Add Vendor</button>
+    </div>
+
+    <div class="card">
+      <h3>Vendor Performance</h3>
+      <p>Active Vendors: 42</p>
+      <p>Top Vendor Revenue: ₹8.2L</p>
+    </div>
+
+    <div class="card">
+      <h3>Marketing Banners</h3>
+      <p>Active Ads: 12</p>
+      <button class="primary">Upload Banner</button>
+    </div>
+
+    <div class="card">
+      <h3>Platform Revenue</h3>
+      <p>Total Sales: ₹2.3 Cr</p>
+      <p>GST Compliant ✔</p>
+    </div>
+  </div>
+</section>
+
+<script>
+function show(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
+}
+</script>
+
+</body>
+</html>
